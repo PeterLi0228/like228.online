@@ -1,250 +1,268 @@
 <!DOCTYPE html>
-<!-- Updated by LiKe Mac -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monster Survivors - Survive the Endless Waves of Monsters</title>
-    <meta name="description" content="Play Monster Survivors - An exciting action-packed game where you survive endless waves of monsters with unique abilities and upgrades.">
-    <link rel="canonical" href="https://monstersurvivors.com/">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F15HF12XTW"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-F15HF12XTW');
-    </script>
+    <title>Markdown Preview Editor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.2.0/github-markdown.min.css" rel="stylesheet">
     <style>
-        :root {
-            --apple-blue: #0071e3;
-            --apple-dark-blue: #0056b3;
-            --apple-gray: #f5f5f7;
-            --apple-dark-gray: #86868b;
-            --apple-black: #1d1d1f;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: var(--apple-black);
-            background-color: white;
+            background-color: #f8f9fa;
         }
-        
-        header {
-            background-color: var(--apple-gray);
-            padding: 1.5rem;
-            text-align: center;
+        .editor-container {
+            height: 100vh;
+            padding: 20px;
         }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--apple-black);
-            font-weight: 700;
-        }
-        
-        .tagline {
-            font-size: 1.3rem;
-            color: var(--apple-dark-gray);
-            margin-bottom: 1rem;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-        
-        .game-container {
-            margin: 2rem 0;
+        .editor-panel {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: 100%;
             display: flex;
             flex-direction: column;
+        }
+        .editor-header {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
         }
-        
-        .game-frame {
-            width: 100%;
-            height: 600px;
-            border: none;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
+        .editor-content {
+            flex: 1;
             overflow: hidden;
+            display: flex;
         }
-        
-        h2 {
-            font-size: 1.8rem;
-            margin: 2rem 0 1rem;
-            color: var(--apple-black);
-            font-weight: 600;
+        .markdown-input {
+            width: 50%;
+            padding: 20px;
+            border-right: 1px solid #eee;
+            overflow-y: auto;
         }
-        
-        p {
-            margin-bottom: 1.5rem;
-            color: var(--apple-black);
-            font-size: 1.1rem;
+        .preview-output {
+            width: 50%;
+            padding: 20px;
+            overflow-y: auto;
         }
-        
-        .description-section {
-            margin: 2rem 0;
+        #markdown-input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            resize: none;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 10px;
         }
-        
-        .features-section {
-            background-color: var(--apple-gray);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
         }
-        
-        .feature-list {
-            list-style-type: none;
-            margin: 1rem 0;
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
         }
-        
-        .feature-list li {
-            margin-bottom: 0.8rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        
-        .feature-list li::before {
-            content: "•";
-            color: var(--apple-blue);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background-color: var(--apple-blue);
+        .btn-copy {
+            background-color: #28a745;
             color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            margin: 1rem 0;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
             transition: background-color 0.3s;
         }
-        
-        .cta-button:hover {
-            background-color: var(--apple-dark-blue);
+        .btn-copy:hover {
+            background-color: #218838;
         }
-        
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: var(--apple-gray);
-            color: var(--apple-dark-gray);
-            margin-top: 2rem;
+        .language-switch {
+            margin-right: 15px;
         }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .tagline {
-                font-size: 1.1rem;
-            }
-            
-            .game-frame {
-                height: 400px;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            p {
-                font-size: 1rem;
-            }
+        .btn-language {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.7rem;
-            }
-            
-            .game-frame {
-                height: 300px;
-            }
-            
-            .features-section {
-                padding: 1.5rem;
-            }
+        .btn-language:hover {
+            background-color: #5a6268;
+        }
+        .header-buttons {
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Monster Survivors</h1>
-            <p class="tagline">Survive endless waves of monsters in this action-packed adventure!</p>
-        </div>
-    </header>
-    
-    <div class="container">
-        <div class="game-container">
-            <iframe class="game-frame" src="https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html" allowfullscreen></iframe>
-            <a href="#play-now" class="cta-button">Play Now</a>
-        </div>
-        
-        <div class="description-section">
-            <h2>About Monster Survivors</h2>
-            <p>Monster Survivors is an exciting roguelike game where you must survive against endless waves of increasingly difficult monsters. Choose your character, gather powerful upgrades, and see how long you can last against the hordes of enemies coming your way.</p>
-            
-            <p>With each playthrough being different from the last, Monster Survivors offers nearly infinite replayability. Challenge yourself to beat your high score or experiment with different character builds and strategies to dominate the monster-filled landscape.</p>
-        </div>
-        
-        <div class="features-section">
-            <h2>Game Features</h2>
-            <ul class="feature-list">
-                <li>Multiple unique characters with different starting abilities</li>
-                <li>Dozens of upgrades and power-ups to create powerful builds</li>
-                <li>Progressively challenging waves of diverse enemies</li>
-                <li>Randomly generated maps for unlimited replayability</li>
-                <li>Simple controls but deep strategic gameplay</li>
-                <li>Beautiful pixel art graphics and atmospheric soundtrack</li>
-            </ul>
-        </div>
-        
-        <div class="description-section">
-            <h2>How to Play</h2>
-            <p>Monster Survivors features intuitive controls that are easy to learn but difficult to master. Move your character using WASD or arrow keys and automatically attack nearby enemies. Collect experience orbs from defeated monsters to level up and choose new upgrades to enhance your character's abilities.</p>
-            
-            <p>Strategic decision-making is crucial as you select which upgrades to take. Will you focus on increasing your attack power, improving your defense, or adding new weapons to your arsenal? The choice is yours, but choose wisely - the monsters only get stronger as time passes!</p>
-        </div>
-        
-        <div class="description-section">
-            <h2>Why Players Love Monster Survivors</h2>
-            <p>Monster Survivors has gained popularity for its addictive "just one more run" gameplay loop. The combination of permanent progression, randomized elements, and the satisfaction of creating powerful character builds keeps players coming back for more. Whether you have five minutes or five hours to play, Monster Survivors offers an engaging experience that fits your schedule.</p>
-        </div>
-        
-        <div id="play-now" class="game-container">
-            <h2>Ready to Survive?</h2>
-            <p>Join thousands of players already enjoying Monster Survivors. Play now directly in your browser - no downloads required!</p>
-            <a href="#" class="cta-button" onclick="scrollToGame(); return false;">Play Monster Survivors</a>
+    <div class="editor-container">
+        <div class="editor-panel">
+            <div class="editor-header">
+                <h4 class="mb-0" id="page-title">Markdown Preview Editor</h4>
+                <div class="header-buttons">
+                    <button class="btn-language language-switch" onclick="toggleLanguage()">中文</button>
+                    <button class="btn-copy" onclick="copyToClipboard()" id="copy-button">Copy Preview</button>
+                </div>
+            </div>
+            <div class="editor-content">
+                <div class="markdown-input">
+                    <textarea id="markdown-input" placeholder="Enter Markdown content here..."></textarea>
+                </div>
+                <div class="preview-output">
+                    <div id="preview" class="markdown-body"></div>
+                </div>
+            </div>
         </div>
     </div>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Monster Survivors. All rights reserved.</p>
-        </div>
-    </footer>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
     <script>
-        function scrollToGame() {
-            document.querySelector('.game-frame').scrollIntoView({ behavior: 'smooth' });
+        // 语言配置
+        const translations = {
+            zh: {
+                title: 'Markdown 转微信公众号编辑器',
+                copyButton: '复制预览内容',
+                placeholder: '在此输入 Markdown 内容...',
+                copySuccess: '内容已复制到剪贴板！',
+                previewError: '预览更新失败，请检查 Markdown 语法',
+                switchTo: 'English',
+                example: `# 欢迎使用 Markdown 编辑器
+
+这是一个示例文档，您可以直接编辑左侧的内容，右侧会实时显示预览效果。
+
+## 支持的功能
+
+- Markdown 语法
+- 实时预览
+- 一键复制到微信公众号
+
+### 使用说明
+
+1. 在左侧输入 Markdown 内容
+2. 右侧会实时显示预览效果
+3. 点击"复制预览内容"按钮即可复制到剪贴板
+4. 将内容粘贴到微信公众号编辑器即可
+
+> 提示：支持所有标准的 Markdown 语法，包括标题、列表、引用、代码块等。
+
+\`\`\`javascript
+// 代码块示例
+function hello() {
+    console.log("Hello, World!");
+}
+\`\`\``
+            },
+            en: {
+                title: 'Markdown Preview Editor',
+                copyButton: 'Copy Preview',
+                placeholder: 'Enter Markdown content here...',
+                copySuccess: 'Content copied to clipboard!',
+                previewError: 'Preview update failed, please check Markdown syntax',
+                switchTo: '中文',
+                example: `# Welcome to Markdown Editor
+
+This is a sample document. You can edit the content on the left, and the preview will update in real-time on the right.
+
+## Features
+
+- Markdown syntax
+- Real-time preview
+- One-click copy to WeChat
+
+### Instructions
+
+1. Enter Markdown content on the left
+2. Preview updates in real-time on the right
+3. Click "Copy Preview" to copy to clipboard
+4. Paste the content into WeChat editor
+
+> Note: Supports all standard Markdown syntax, including headings, lists, quotes, code blocks, etc.
+
+\`\`\`javascript
+// Code block example
+function hello() {
+    console.log("Hello, World!");
+}
+\`\`\``
+            }
+        };
+
+        let currentLang = 'en';
+
+        // 切换语言
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            updateLanguage();
         }
+
+        // 更新界面语言
+        function updateLanguage() {
+            const t = translations[currentLang];
+            document.getElementById('page-title').textContent = t.title;
+            document.getElementById('copy-button').textContent = t.copyButton;
+            document.getElementById('markdown-input').placeholder = t.placeholder;
+            document.querySelector('.btn-language').textContent = t.switchTo;
+        }
+
+        // 确保 marked 已加载
+        if (typeof marked === 'undefined') {
+            console.error('marked.js failed to load, please check your network connection');
+        }
+
+        const markdownInput = document.getElementById('markdown-input');
+        const preview = document.getElementById('preview');
+
+        // 配置 marked 选项
+        marked.setOptions({
+            breaks: true,
+            gfm: true,
+            sanitize: false
+        });
+
+        // 实时预览
+        function updatePreview() {
+            try {
+                const markdown = markdownInput.value;
+                preview.innerHTML = marked.parse(markdown);
+            } catch (error) {
+                console.error('Preview update failed:', error);
+                preview.innerHTML = `<div style="color: red;">${translations[currentLang].previewError}</div>`;
+            }
+        }
+
+        // 监听输入变化
+        markdownInput.addEventListener('input', updatePreview);
+
+        // 复制预览内容到剪贴板
+        function copyToClipboard() {
+            const previewContent = preview.innerHTML;
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = previewContent;
+            document.body.appendChild(tempDiv);
+            
+            const range = document.createRange();
+            range.selectNodeContents(tempDiv);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            
+            document.execCommand('copy');
+            document.body.removeChild(tempDiv);
+            
+            alert(translations[currentLang].copySuccess);
+        }
+
+        // 添加示例内容
+        markdownInput.value = translations[currentLang].example;
+
+        // 初始化预览
+        updatePreview();
     </script>
 </body>
-</html> 
+</html>
